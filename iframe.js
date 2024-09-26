@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     console.log("Script Started...");
-    const iframe = document.getElementById('iframeContactUsOOKAUAE');
+    const iframe = document.getElementById('iframeContactUsOOKAUAEArabic');
     iframe.src = `https://3liglobal.github.io/Arabic_Contact_Us-Form_OOKA_UAE`;
     var email;
     var checkEmailInterval = setInterval(function () {
