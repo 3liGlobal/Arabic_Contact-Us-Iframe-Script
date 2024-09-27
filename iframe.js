@@ -45,8 +45,14 @@ function initializeArabicIframe() {
     }, 500);
 }
  
-// Run on initial load
-document.addEventListener("DOMContentLoaded", initializeArabicIframe);
+var language =  document.querySelector('.language-switcher_button').children[0].innerHTML;
+                if(language!='English'){
+                     newLanguageButton.addEventListener('click', initializeArabicIframe);
+                }
+                //window.location.reload();
+               else{ 
+                   newLanguageButton.addEventListener('click', initializeEnglishIframe);
+               }
  
 // MutationObserver for Arabic iframe
 const arabicObserver = new MutationObserver((mutations) => {
