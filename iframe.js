@@ -29,7 +29,7 @@ const arabicObserver = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
         const newLanguageButton = document.querySelector('.language-switcher_button');
         if (newLanguageButton) {
-            window.location.reload();
+            //window.location.reload();
             newLanguageButton.addEventListener('click', initializeArabicIframe);
         }
     });
