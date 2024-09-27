@@ -1,27 +1,37 @@
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("Script Started...");
+function initializeArabicIframe() {
     const iframe = document.getElementById('iframeContactUsOOKAUAEArabic');
-    iframe.src = `https://3liglobal.github.io/Arabic_Contact_Us-Form_OOKA_UAE`;
-    var email;
-    var checkEmailInterval2 = setInterval(function () {
-    var divElement = document.getElementById("swell-customer-identification");
-     //console.log(divElement);
-     email = divElement.hasAttribute("data-email") ? divElement.getAttribute("data-email") : null;
-        if (!iframe) {
-            console.log("Iframe not found yet...");
+    if (!iframe) return;
+
+    console.log("Script Started...");
+    iframe.src = 'https://3liglobal.github.io/Arabic_Contact_Us-Form_OOKA_UAE';
+    let email;
+
+    const checkEmailInterval = setInterval(function () {
+        const divElement = document.getElementById("swell-customer-identification");
+        email = divElement.hasAttribute("data-email") ? divElement.getAttribute("data-email") : null;
+
+        if (email) {
+            console.log("Email found: " + email);
+            iframe.contentWindow.postMessage(email, "*");
+            iframe.src = `https://3liglobal.github.io/Arabic_Contact_Us-Form_OOKA_UAE?email=${encodeURIComponent(email)}`;
+            clearInterval(checkEmailInterval);
         } else {
-            if (email) { 
-                // If email is present and iframe exists
-                console.log("Email found: " + email);
-                 iframe.contentWindow.postMessage(email);
-                iframe.src = `https://3liglobal.github.io/Arabic_Contact_Us-Form_OOKA_UAE?email=${encodeURIComponent(email)}`
-                clearInterval(checkEmailInterval2); // Stop checking once the email is found and iframe is ready
-            } else {
-                console.log("No email found, using default URL.");
-                // iframe.src = `https://3liglobal.github.io/Contact_Us-Form_OOKA_UAE`;
-                //clearInterval(checkEmailInterval); // Stop checking after setting default iframe src
-            }
+            console.log("No email found, using default URL.");
         }
-    }, 500); // Check every half second
-   
+    }, 500);
+}
+
+// Run on initial load
+document.addEventListener("DOMContentLoaded", initializeArabicIframe);
+
+// MutationObserver for Arabic iframe
+const arabicObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        const newLanguageButton = document.querySelector('.language-switcher_button');
+        if (newLanguageButton) {
+            newLanguageButton.addEventListener('click', initializeArabicIframe);
+        }
+    });
 });
+
+arabicObserver.observe(document.body, { childList: true, subtree: true });
