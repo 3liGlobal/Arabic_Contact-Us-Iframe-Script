@@ -1,8 +1,26 @@
+// Function to reload the page and switch to Arabic
+function switchToArabic() {
+    // Reload the page
+    window.location.reload();
+}
+
+// Attach click event listener to the language switcher button
+document.addEventListener("DOMContentLoaded", function () {
+    const languageSwitcherButton = document.querySelector('.language-switcher_button');
+
+    if (languageSwitcherButton) {
+        languageSwitcherButton.addEventListener('click', function () {
+            switchToArabic();
+        });
+    }
+});
+
+// Initialize Arabic iframe script
 function initializeArabicIframe() {
     const iframe = document.getElementById('iframeContactUsOOKAUAEArabic');
     if (!iframe) return;
 
-    console.log("Arabic Script Started...");
+    console.log("Arabic Script Loaded");
     iframe.src = 'https://3liglobal.github.io/Arabic_Contact_Us-Form_OOKA_UAE';
     let email;
 
@@ -22,18 +40,10 @@ function initializeArabicIframe() {
 }
 
 // Run on initial load
-document.addEventListener("DOMContentLoaded", initializeArabicIframe);
-
-// MutationObserver for Arabic iframe
-const arabicObserver = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-        const newLanguageButton = document.querySelector('.language-switcher_button');
-        if (newLanguageButton) {
-            //window.location.reload();
-            newLanguageButton.addEventListener('click', initializeArabicIframe);
-        }
-    });
+document.addEventListener("DOMContentLoaded", function () {
+    if (window.location.href.includes('/ar/content/contact-us')) {
+        initializeArabicIframe();
+    } else if (document.getElementById('iframeContactUsOOKAUAEArabic')) {
+        initializeArabicIframe();
+    }
 });
-
-arabicObserver.observe(document.body, { childList: true, subtree: true });
-console.log("Arabic Script Loaded");
