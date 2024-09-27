@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const iframe = document.getElementById('iframeContactUsOOKAUAEArabic');
     iframe.src = `https://3liglobal.github.io/Arabic_Contact_Us-Form_OOKA_UAE`;
     var email;
-    var checkEmailInterval = setInterval(function () {
+    var checkEmailInterval2 = setInterval(function () {
     var divElement = document.getElementById("swell-customer-identification");
      //console.log(divElement);
      email = divElement.hasAttribute("data-email") ? divElement.getAttribute("data-email") : null;
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("Email found: " + email);
                  iframe.contentWindow.postMessage(email);
                 iframe.src = `https://3liglobal.github.io/Arabic_Contact_Us-Form_OOKA_UAE?email=${encodeURIComponent(email)}`
-                clearInterval(checkEmailInterval); // Stop checking once the email is found and iframe is ready
+                clearInterval(checkEmailInterval2); // Stop checking once the email is found and iframe is ready
             } else {
                 console.log("No email found, using default URL.");
                 // iframe.src = `https://3liglobal.github.io/Contact_Us-Form_OOKA_UAE`;
