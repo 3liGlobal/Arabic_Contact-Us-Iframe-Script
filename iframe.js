@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Initialize Arabic iframe script
-function initializeArabicIframe() {
+function initializeEnglishIframe() {
     const iframe = document.getElementById('iframeContactUsOOKAUAEArabic');
     if (!iframe) return;
 
@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const lang = document.documentElement.lang;
 
     if (lang === "en") {
-        initializeArabicIframe();
-    } else {
         initializeEnglishIframe();
+    } else {
+        initializeArabicIframe();
     }
 });
