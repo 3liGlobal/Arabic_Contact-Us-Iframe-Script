@@ -1,33 +1,15 @@
-// Function to reload the page and switch to Arabic
-function switchToArabic() {
-    // Reload the page
-    window.location.reload();
-}
-
-// Attach click event listener to the language switcher button
-document.addEventListener("DOMContentLoaded", function () {
-    const languageSwitcherButton = document.querySelector('.language-switcher_button');
-
-    if (languageSwitcherButton) {
-        languageSwitcherButton.addEventListener('click', function () {
-            switchToArabic();
-        });
-    }
-});
-
-// Initialize Arabic iframe script
 function initializeArabicIframe() {
     const iframe = document.getElementById('iframeContactUsOOKAUAEArabic');
     if (!iframe) return;
-
-    console.log("Arabic Script Loaded");
+ 
+    console.log("Arabic Script Started...");
     iframe.src = 'https://3liglobal.github.io/Arabic_Contact_Us-Form_OOKA_UAE';
     let email;
-
+ 
     const checkEmailInterval = setInterval(function () {
         const divElement = document.getElementById("swell-customer-identification");
         email = divElement.hasAttribute("data-email") ? divElement.getAttribute("data-email") : null;
-
+ 
         if (email) {
             console.log("Email found: " + email);
             iframe.contentWindow.postMessage(email, "*");
@@ -38,12 +20,20 @@ function initializeArabicIframe() {
         }
     }, 500);
 }
-
+ 
 // Run on initial load
-document.addEventListener("DOMContentLoaded", function () {
-    if (window.location.href.includes('/ar/content/contact-us')) {
-        initializeArabicIframe();
-    } else if (document.getElementById('iframeContactUsOOKAUAEArabic')) {
-        initializeArabicIframe();
-    }
+document.addEventListener("DOMContentLoaded", initializeArabicIframe);
+ 
+// MutationObserver for Arabic iframe
+const arabicObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        const newLanguageButton = document.querySelector('.language-switcher_button');
+        if (newLanguageButton) {
+            //window.location.reload();
+            newLanguageButton.addEventListener('click', initializeArabicIframe);
+        }
+    });
 });
+ 
+arabicObserver.observe(document.body, { childList: true, subtree: true });
+console.log("Arabic Script Loaded");
