@@ -2,7 +2,7 @@ function initializeArabicIframe() {
     const iframe = document.getElementById('iframeContactUsOOKAUAEArabic');
     if (!iframe) return;
 
-    console.log("Script Started...");
+    console.log("Arabic Script Started...");
     iframe.src = 'https://3liglobal.github.io/Arabic_Contact_Us-Form_OOKA_UAE';
     let email;
 
