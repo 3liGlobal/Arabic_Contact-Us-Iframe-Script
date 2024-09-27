@@ -35,3 +35,4 @@ const arabicObserver = new MutationObserver((mutations) => {
 });
 
 arabicObserver.observe(document.body, { childList: true, subtree: true });
+console.log("Arabic Script Loaded");
