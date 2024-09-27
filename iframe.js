@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Initialize Arabic iframe script
-function initializeEnglishIframe() {
+function initializeArabicIframe() {
     const iframe = document.getElementById('iframeContactUsOOKAUAEArabic');
     if (!iframe) return;
 
@@ -41,12 +41,9 @@ function initializeEnglishIframe() {
 
 // Run on initial load
 document.addEventListener("DOMContentLoaded", function () {
-    // Check the document's language attribute
-    const lang = document.documentElement.lang;
-
-    if (lang === "en") {
-        initializeEnglishIframe();
-    } else {
+    if (window.location.href.includes('/ar/content/contact-us')) {
+        initializeArabicIframe();
+    } else if (document.getElementById('iframeContactUsOOKAUAEArabic')) {
         initializeArabicIframe();
     }
 });
