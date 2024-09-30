@@ -3,6 +3,7 @@ console.log("This is Arabic Script");
 
 function initializeEnglishIframe() {
     const iframe = document.getElementById('iframeContactUsOOKAUAE');
+    console.log(iframe);
     if (!iframe) return;
 
     console.log("English frame Initiliazzed...");
