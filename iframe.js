@@ -1,9 +1,4 @@
-console.log("This is Arabic Script");
-
-const interval = setInterval(() => {
-  console.log("Arabic Working")
-}, 1000);
-
+console.log("This is English Script");
 
 
 function initializeEnglishIframe() {
@@ -30,6 +25,7 @@ function initializeEnglishIframe() {
 }
 function initializeArabicIframe() {
     const iframe = document.getElementById('iframeContactUsOOKAUAEArabic');
+    console.log(iframe);
     if (!iframe) return;
 
     console.log("Arabic frame Initiliazzed...");
@@ -63,40 +59,42 @@ else {
 
 document.addEventListener("DOMContentLoaded", function () {
     var targetElement = document.querySelector('.language-switcher_button');
-
     targetElement.addEventListener("click", function () {
         var language = document.querySelector('.language-switcher_button').children[0].innerHTML;
-
         console.log("Clicked " + language)
-        if (language != 'English') {
-            initializeArabicIframe();
-        }
-        else {
-            initializeEnglishIframe();
-        }
+        setTimeout((language) => {
+            console.log("Run")
+            if (language != 'English') {
+                initializeArabicIframe();
+            }
+            else {
+                initializeEnglishIframe();
+            }
+        }, 5000);
     });
 });
 
 
 
 
-// MutationObserver to detect changes when the button is clicked
-// const observer = new MutationObserver((mutations) => {
-//     mutations.forEach((mutation) => {
-//         if (mutation.type === "childList") {
-//             const newLanguageButton = document.querySelector('.language-switcher_button');
-//             if (newLanguageButton) {
-//                 var language = document.querySelector('.language-switcher_button').children[0].innerHTML;
-//                 if (language == 'English') {
-//                     newLanguageButton.addEventListener('click', initializeEnglishIframe);
-//                 }
-//                 //window.location.reload();
-//                 else {
-//                     newLanguageButton.addEventListener('click', initializeArabicIframe);
-//                 }
-//             }
-//         }
-//     });
-// });
+//MutationObserver to detect changes when the button is clicked
+//MutationObserver to detect changes when the button is clicked
+const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        if (mutation.type === "childList") {
+            const newLanguageButton = document.querySelector('.language-switcher_button');
+            if (newLanguageButton) {
+                var language = document.querySelector('.language-switcher_button').children[0].innerHTML;
+                if (language == 'English') {
+                    newLanguageButton.addEventListener('click', initializeEnglishIframe);
+                }
+                //window.location.reload();
+                else {
+                    newLanguageButton.addEventListener('click', initializeArabicIframe);
+                }
+            }
+        }
+    });
+});
 
-// observer.observe(document.body, { childList: true, subtree: true });
+observer.observe(document.body, { childList: true, subtree: true });
