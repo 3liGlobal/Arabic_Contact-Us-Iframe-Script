@@ -1,4 +1,4 @@
-console.log("This is English Script");
+console.log("This is Arabic Script");
 
 const interval = setInterval(() => {
   console.log("Arabic Working")
