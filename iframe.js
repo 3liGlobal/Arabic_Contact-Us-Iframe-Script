@@ -1,5 +1,10 @@
 console.log("This is English Script");
 
+const interval = setInterval(() => {
+  console.log("Arabic Working")
+}, 1000);
+
+
 
 function initializeEnglishIframe() {
     const iframe = document.getElementById('iframeContactUsOOKAUAE');
