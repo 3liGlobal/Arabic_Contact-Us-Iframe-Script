@@ -1,4 +1,4 @@
-console.log("This is English Script");
+console.log("This is Arabic Script");
 
 
 function initializeEnglishIframe() {
