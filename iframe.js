@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
             else {
                 initializeEnglishIframe();
             }
-        }, 5000);
+        }, 7000);
     });
 });
 
